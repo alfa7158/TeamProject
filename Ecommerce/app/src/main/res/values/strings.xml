@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">E-commerce</string>
+    <string name="logo">LOGO</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="product">Product</string>
+    <string name="favorite">Favortie</string>
+    <string name="profile">Profile</string>
+    <string name="Logout" />
+    <string name="logout">Logout</string>
+    <string name="email">Email</string>
+    <string name="Register">Register</string>
+    <string name="first_Name">First Name</string>
+    <string name="Last_name">Last name</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="Confirm_password">Confirm password</string>
+</resources>

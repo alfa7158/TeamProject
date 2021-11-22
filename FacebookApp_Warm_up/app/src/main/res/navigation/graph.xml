@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/graph"
+    app:startDestination="@id/recyclerViewFirst">
+
+    <fragment
+        android:id="@+id/recyclerViewFirst"
+        android:name="com.example.facebookapp_warm_up.RecyclerViewFirst"
+        android:label="fragment_recycler_view_first"
+        tools:layout="@layout/fragment_recycler_view_first" >
+        <action
+            android:id="@+id/action_recyclerViewFirst_to_recyclerViewSeond"
+            app:destination="@id/recyclerViewSeond" />
+    </fragment>
+    <fragment
+        android:id="@+id/recyclerViewSeond"
+        android:name="com.example.facebookapp_warm_up.RecyclerViewSeond"
+        android:label="fragment_recycler_view_seond"
+        tools:layout="@layout/fragment_recycler_view_seond" />
+</navigation>

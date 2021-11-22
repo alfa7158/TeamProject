@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">warm_up_week7_profile</string>
+    <string name="myName">Abdullah Alfaraj</string>
+    <string name="my_major">Major:</string>
+    <string name="my_bachelor_degree">bachelor degree in Data anyalatics and public health</string>
+    <string name="myPhoneNumber">Phone Number:</string>
+    <string name="callMe">Call</string>
+    <string name="emailMe">To email</string>
+    <string name="MyExperience" />
+    <string name="myExperiance">Experience:</string>
+    <string name="decrip_of_experi">Java, Kotlin, R, JMP, Minitab, and Python</string>
+</resources>

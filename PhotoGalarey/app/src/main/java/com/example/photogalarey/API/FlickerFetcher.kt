@@ -1,0 +1,69 @@
+package com.example.photogalarey.API
+
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.util.Log
+import androidx.annotation.WorkerThread
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.example.photogalarey.model.GalleryItem
+import okhttp3.ResponseBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import java.net.URL
+
+private const val TAG = "FlickrFetchr"
+
+class FlickrFetchr {
+
+    private val flickrApi: FlickrApi
+
+    init {
+        val retrofit: Retrofit = Retrofit.Builder()
+            .baseUrl("https://api.flickr.com/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        flickrApi = retrofit.create(FlickrApi::class.java)
+    }
+
+    fun fetchPhotos(): LiveData<List<GalleryItem>> {
+        val responseLiveData: MutableLiveData<List<GalleryItem>> = MutableLiveData()
+        val flickrRequest: Call<FlickerResponse> = flickrApi.fetchPhotos()
+
+        flickrRequest.enqueue(object : Callback<FlickerResponse> {
+
+            override fun onFailure(call: Call<FlickerResponse>, t: Throwable) {
+                Log.e(TAG, "Failed to fetch photos", t)
+            }
+
+            override fun onResponse(
+                call: Call<FlickerResponse>,
+                response: Response<FlickerResponse>
+            ) {
+                Log.d(TAG, "Response received")
+                val flickrResponse: FlickerResponse? = response.body()
+                val photoResponse: PhotoResponse? = flickrResponse?.photos
+                var galleryItems: List<GalleryItem>? = photoResponse?.galleryItems
+
+                responseLiveData.value = galleryItems
+            }
+        })
+
+        return responseLiveData
+    }
+
+    @WorkerThread
+    fun fetchPhoto(url: String): Bitmap? {
+
+        val response: Response<ResponseBody> = flickrApi.fetchUrlBytes(url).execute()
+
+        val bitmap = response.body()?.byteStream().use(BitmapFactory::decodeStream)
+
+        return bitmap
+    }
+
+}
